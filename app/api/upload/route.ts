@@ -3,7 +3,7 @@ import * as cheerio from 'cheerio';
 import { generateSummary } from "@/app/utils/azure-ai";
 
 export const runtime = "nodejs";
-export const maxDuration = 300;  // Set maximum duration to 5 minutes
+export const maxDuration = 60;  // Set maximum duration to 5 minutes
 
 export async function GET() {
   return NextResponse.json({ message: "Test API is working!" });
