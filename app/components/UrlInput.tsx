@@ -22,7 +22,8 @@ const URLInput: React.FC = () => {
 		try {
 			// Validate URL
 			new URL(url);
-			router.push(`/results?url=${encodeURIComponent(url)}`);
+      localStorage.setItem("url", url)
+			router.push(`/results`);
 		} catch (err) {
 			console.error("Error processing URL:", err);
 			if (err instanceof Error && err.message.includes("URL")) {

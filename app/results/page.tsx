@@ -1,13 +1,13 @@
 "use client"
 
-import { useSearchParams } from "next/navigation"
 import { useEffect, useRef, useState, type FormEvent } from "react"
 import { Message } from "../types"
 import { SummarySection } from "../components/SummarySection"
 import { ChatSection } from "../components/ChatSection"
+import { useRouter } from "next/navigation";
 
 export default function ResultsPage() {
-  const searchParams = useSearchParams()
+  const router = useRouter();
   const [articleContent, setArticleContent] = useState("")
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
@@ -20,15 +20,16 @@ export default function ResultsPage() {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
-
   useEffect(() => {
     scrollToBottom()
   }, [messages])
 
   useEffect(() => {
     const fetchContent = async () => {
-      const url = searchParams.get("url")
-      if (!url) return
+      const url = localStorage.getItem("url")
+      if (!url) {
+        router.push(`/`);
+      }
 
       try {
         const response = await fetch("/api/upload", {
@@ -55,7 +56,7 @@ export default function ResultsPage() {
     }
 
     fetchContent()
-  }, [searchParams])
+  }, [])
 
   const handleQuery = async (message: string) => {
     try {

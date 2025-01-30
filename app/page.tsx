@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import URLInput from "./components/UrlInput";
 
 export default function Home() {
 	const [email, setEmail] = useState("");
-
+  useEffect(() => {
+    localStorage.setItem("url", "")
+  }, [])
 	const handleSubscribe = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		// Add your subscription logic here
