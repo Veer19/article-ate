@@ -19,7 +19,7 @@ export default function Home() {
 				<URLInput />
 
 				{/* Newsletter Section */}
-				<div className="mt-24 bg-white rounded-2xl p-8 md:p-12">
+				{/* <div className="mt-24 bg-white rounded-2xl p-8 md:p-12">
 					<div className="max-w-3xl mx-auto text-center">
 						<h2 className="text-4xl font-bold mb-6 flex items-center justify-center">
 							Subscribe to Updates
@@ -72,7 +72,7 @@ export default function Home() {
 							Join our growing community of 1,000+ users
 						</p>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

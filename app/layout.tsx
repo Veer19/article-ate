@@ -18,9 +18,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span className="text-2xl font-bold text-[#FF906D]">Article-ate</span>
             </Link>
             <div className="flex items-center space-x-8">
-              <Link href="/" className="text-gray-600 hover:text-gray-900">
-                Home
-              </Link>
               <Link
                 href="https://instagram.com/_u/notsoveer_"
                 className="bg-[#FF906D] hover:bg-[#ff8055] text-white px-6 py-2 rounded-lg transition-colors"

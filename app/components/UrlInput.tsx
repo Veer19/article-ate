@@ -62,7 +62,7 @@ const URLInput: React.FC = () => {
 					</p>
 					<p className="text-gray-600 mb-8">
 						Paste the URL of any webpage, and you'll get a concise
-						summary that highlights the key points in seconds. From there, feel free to ask questions
+						summary that highlights the key points in seconds. From there, feel free to ask any questions
 					</p>
 
 					<div className="space-y-4">
