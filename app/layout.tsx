@@ -1,6 +1,7 @@
 import "./globals.css"
 import type React from "react"
 import Link from "next/link"
+import { Suspense } from "react"
 
 export const metadata = {
   title: "Article-ate",
@@ -31,7 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Main Content */}
         <main className="flex-1">
           <div className="max-w-7xl mx-auto">
-            {children}
+            <Suspense fallback={<div>Loading...</div>}>
+              {children}
+            </Suspense>
           </div>
         </main>
       </body>
