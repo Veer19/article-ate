@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@azure/openai": "^2.0.0",
+    "@azure/search-documents": "^12.1.0",
     "cheerio": "^1.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
