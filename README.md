@@ -2,8 +2,8 @@
 
 A Next.js application and chrome extension that summarizes web content and provides an interactive chat interface using Azure OpenAI. Built with Next.js and Azure OpenAI, this tool transforms complex web content into digestible summaries and enables interactive Q&A sessions.
 
-<img src="summary_demo.png" alt="Summary demo" width="300">
-<img src="chat_demo.png" alt="Chat demo" width="300">
+<img src="summary_demo.png" alt="Summary demo" width="700">
+<img src="chat_demo.png" alt="Chat demo" width="700">
 
 ## 🚀 Key Features
 
