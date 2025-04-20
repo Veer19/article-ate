@@ -15,18 +15,46 @@ const URLInput: React.FC = () => {
 
 	const processURL = async () => {
 		if (!url) return;
-
 		setIsProcessing(true);
 		setError(null);
 
 		try {
-			// Validate URL
-			new URL(url);
-			localStorage.setItem("url", url);
+			// Validate URL format first
+			const urlObject = new URL(url);
+
+			// Check for required protocol (http or https)
+			if (!["http:", "https:"].includes(urlObject.protocol)) {
+				throw new Error("URL must start with http:// or https://");
+			}
+
+			// Check for valid hostname (at least 2 parts, e.g., example.com)
+			const hostParts = urlObject.hostname.split(".");
+			if (
+				hostParts.length < 2 ||
+				!hostParts.every((part) => part.length > 0)
+			) {
+				throw new Error("Invalid domain name");
+			}
+
+			// If validation passes, proceed with the API call
+			const response = await fetch("/api/upload", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ url }),
+			});
+
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+
+			const data = await response.json();
+			localStorage.setItem("sessionId", data.sessionId);
 			router.push(`/results`);
 		} catch (err) {
 			console.error("Error processing URL:", err);
-			if (err instanceof Error && err.message.includes("URL")) {
+			if (err instanceof Error) {
 				setError("Please enter a valid URL");
 			} else {
 				setError("An unexpected error occurred");
@@ -89,16 +117,30 @@ const URLInput: React.FC = () => {
 								className="w-full bg-[#FF906D] hover:bg-[#ff8055] text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 disabled:opacity-50"
 							>
 								<span>
-									{isProcessing
-										? "Processing..."
-										: "Articulate"}
+									{isProcessing ? "Processing..." : "Process"}
 								</span>
 								<ArrowRight className="w-5 h-5" />
 							</button>
 						</form>
 
 						{error && (
-							<p className="text-red-500 text-sm">{error}</p>
+							<div className="flex items-center space-x-2 p-4 bg-red-50 border border-red-200 rounded-lg">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									className="h-5 w-5 text-red-500"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+								>
+									<path
+										fillRule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+										clipRule="evenodd"
+									/>
+								</svg>
+								<p className="text-red-600 text-sm font-medium">
+									{error}
+								</p>
+							</div>
 						)}
 					</div>
 
