@@ -1,4 +1,4 @@
-# ChatPDF - Web Content Summarizer
+# Articleate - Web Content Summarizer
 
 A Next.js application and chrome extension that summarizes web content and provides an interactive chat interface using Azure OpenAI. Built with Next.js and Azure OpenAI, this tool transforms complex web content into digestible summaries and enables interactive Q&A sessions.
 
