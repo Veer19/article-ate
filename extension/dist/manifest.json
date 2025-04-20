@@ -1,0 +1,16 @@
+{
+	"version": "1.0.0",
+	"manifest_version": 3,
+	"name": "Articlate - AI Article Summarizer",
+	"description": "Articlate is a Chrome extension that allows you to summarize articles on the web.",
+	"action": {
+		"default_popup": "js/index.html",
+		"default_title": "Articlate - AI Article Summarizer",
+		"default_icon": "icon.png"
+	},
+	"content_security_policy": {
+		"extension_pages": "script-src 'self'; object-src 'self'"
+	},
+
+	"permissions": ["activeTab", "tabs"]
+}
